@@ -1,5 +1,8 @@
 vim.cmd("set expandtab")
 vim.cmd("set number")
+vim.cmd("set tabstop=2")
+vim.cmd("set shiftwidth=2")
+vim.cmd("set expandtab")
 vim.g.mapleader = " "
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -117,8 +120,12 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.black,
-    -- null_ls.builtins.completion.spell,
-    -- require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
+    null_ls.builtins.formatting.prettier.with({
+      filetypes = {
+        "typescript",
+        "vue",
+      },
+    }),
   },
 })
 
