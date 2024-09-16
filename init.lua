@@ -107,12 +107,13 @@ configs.setup({
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "pyright", "ts_ls" },
+  ensure_installed = { "lua_ls", "pyright", "ts_ls", "jedi_language_server" },
 })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<C-n>", ":Neotree filesystem toggle left<CR>")
+vim.keymap.set("n", "gd", "<C-]>")
 
 local null_ls = require("null-ls")
 
@@ -175,7 +176,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-require("lspconfig").pyright.setup({
+require("lspconfig")["jedi_language_server"].setup({
   capabilities = capabilities,
 })
 
